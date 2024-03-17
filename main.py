@@ -1,29 +1,20 @@
-class Category:
-    total_categories = 0
-    total_unique_products = set()
+from category import Category
+from product import Product
 
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
-        self.products = []
-        Category.total_categories += 1
+# Создание объектов класса Category
+category1 = Category("Electronics", "Electronic devices")
 
-class Product:
-    def __init__(self, name, description, price, quantity):
-        self.name = name
-        self.description = description
-        self.price = price
-        self.quantity = quantity
-        Category.total_unique_products.add(name)
+# Создание объектов класса Product
+product1 = Product("Laptop", "High-performance laptop", 1200.50, 10)
+product2 = Product("Smartphone", "Latest smartphone model", 800.75, 20)
 
-category1 = Category("Electronics", "Category for electronic products")
-product1 = Product("Laptop", "High performance laptop", 1500, 10)
-product2 = Product("Smartphone", "Latest smartphone model", 800, 20)
+# Добавление продуктов категории
+category1.add_product(product1)
+category1.add_product(product2)
 
-category2 = Category("Clothing", "Category for clothing items")
-product3 = Product("T-shirt", "Basic cotton t-shirt", 20, 50)
+# Вывод информации о продуктах категории
+for product in category1.products:
+    print(product)
 
-for product in Category.total_unique_products:
-    print(f"Unique Product: {product}")
-
-print(f"Total Categories: {Category.total_categories}")
+print("Total categories:", Category.total_categories)
+print("Total unique products:", len(Category.total_unique_products))
