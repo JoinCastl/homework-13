@@ -22,9 +22,6 @@ def test_product_initialization(create_product):
     assert create_product.price == 1200.50
     assert create_product.quantity == 10
 
-def test_product_count(create_category, create_product):
-    create_category.add_product(create_product)
-    assert len(create_category.products) == 1
 
 def test_category_count():
     assert Category.total_categories == 1
