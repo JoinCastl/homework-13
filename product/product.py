@@ -10,3 +10,5 @@ class Product:
         self.price = float(price)
         self.quantity = quantity
 
+    def __str__(self):
+        return f"Product: {self.name} - {self.description}, Price: {self.price}, Quantity: {self.quantity}"
