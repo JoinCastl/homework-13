@@ -21,8 +21,9 @@ class Category:
         self.__products.append(product)
         Category.total_unique_products += 1
 
-#1  def is_product(self):
-        return self.__products
+#1
+     def is_product(self):
+         return self.__products
 
 #2
     #@classmethod
