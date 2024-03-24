@@ -2,11 +2,14 @@ from typing import List
 
 from product.product import Product
 
+
 class ZeroQuantityError(ValueError):
     """ Класс исключения для товаров с нулевым количеством """
+
     def __init__(self, message='Товар не может быть добавлен'):
         self.message = message
         super().__init__(self.message)
+
 
 class Category:
     name: str
@@ -41,6 +44,7 @@ class Category:
             return total_price / len(self.__products)
         except ZeroDivisionError:
             return 0
+
     @property
     def product_list(self):
         return self.__products
@@ -56,3 +60,37 @@ class Category:
 
     def __str__(self):
         return f"{self.name}, количество продуктов: {Category.total_unique_products} шт."
+
+
+class Category2:
+    def __init__(self, category_name):
+        self.category_name = category_name
+        self.products = []
+
+    def add_product(self, product):
+        self.products.append(product)
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        if self.index < len(self.products):
+            product = self.products[self.index]
+            self.index += 1
+            return product
+        else:
+            raise StopIteration()
+
+
+# Создадим категорию "Одежда"
+clothes_category = Category2("Одежда")
+
+# Добавим товары в категорию
+clothes_category.add_product("Футболка")
+clothes_category.add_product("Джинсы")
+clothes_category.add_product("Рубашка")
+
+# Пройдемся по товарам категории с помощью цикла for
+for product in clothes_category:
+    print(product)

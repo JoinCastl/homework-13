@@ -5,6 +5,19 @@ from product.product import Product, LawnGrass, Smartphone
 
 @pytest.fixture
 def product():
+    return Product("Laptop", "High-performance laptop", 1200.50, 10)
+    return Product("Smartphone", "Latest smartphone model", 800.75, 20)
+
+
+def test_mul():
+    product1 = Product("Laptop", "High-performance laptop", 1200.50, 10)
+    product2 = Product("Smartphone", "Latest smartphone model", 800.75, 20)
+    total_price = product1 + product2
+
+    assert total_price == 28020.0
+
+@pytest.fixture
+def product():
     return Product("fruit", "fresh fruits", 120, 10)
 
 

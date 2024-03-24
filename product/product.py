@@ -58,14 +58,18 @@ class Product(LoggableMixin, AbstractProduct):
         else:
             self._price = value
 
-    def __str__(self):
-        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
-
     def __add__(self, other):
         """ Складывает товары только из одинаковых классов продуктов """
         if type(self) == type(other):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError("не одинаковый класс продукта!")
+
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+        return f'Product: {self.name}, Price: {self.price}, Quantity: {self.quantity}, Total Price: ' f'{self.price * self.quantity}'
+
+    # def __repr__(self):
+    # return f'Product(\'{self.name}\', {self.price}, {self.quantity}, {self.price * self.quantity})'
 
 
 class Smartphone(Product):
@@ -83,7 +87,7 @@ class Smartphone(Product):
     def create_product(cls, name: str, description: str, price: float, quantity: int, performance: str, model: str,
                        memory: int, color: str):
         return cls(name, description, price, quantity, performance, model, memory, color)
-    #получается тест только если переопределить метод create_product
+
 
 class LawnGrass(Product):
     """ Подкласс для продуктов типа Трава газонная """
@@ -96,6 +100,7 @@ class LawnGrass(Product):
         super().__init__(name, description, price, quantity)
 
     @classmethod
-    def create_product(cls, name: str, description: str, price: float, quantity: int, country: str, germination_period: str,
-                 color: str):
+    def create_product(cls, name: str, description: str, price: float, quantity: int, country: str,
+                       germination_period: str,
+                       color: str):
         return cls(name, description, price, quantity, country, germination_period, color)
