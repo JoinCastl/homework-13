@@ -59,10 +59,10 @@ class Product(LoggableMixin, AbstractProduct):
             self._price = value
 
     def __add__(self, other):
-        """ Складывает товары только из одинаковых классов продуктов """
-        if isinstance(other, self.__class__):
+        if isinstance(other, type(self)):
             return self.price * self.quantity + other.price * other.quantity
-        raise TypeError("не одинаковый класс продукта!")
+        else:
+            raise TypeError
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
