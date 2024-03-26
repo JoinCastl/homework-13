@@ -60,7 +60,7 @@ class Product(LoggableMixin, AbstractProduct):
 
     def __add__(self, other):
         """ Складывает товары только из одинаковых классов продуктов """
-        if type(self) == type(other):
+        if isinstance(other, self.__class__):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError("не одинаковый класс продукта!")
 
