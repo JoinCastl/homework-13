@@ -59,7 +59,7 @@ class Product(LoggableMixin, AbstractProduct):
             self._price = value
 
     def __add__(self, other):
-        if isinstance(other, type(self)):
+        if type(self) == type(other):
             return self.price * self.quantity + other.price * other.quantity
         else:
             raise TypeError
